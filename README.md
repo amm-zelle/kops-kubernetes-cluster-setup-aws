@@ -1,11 +1,11 @@
 # kops-kubernetes-cluster-configuration
 # Landmark Technologies,  -    Landmark Technologies 
 # Tel: +1 437 215 2483,   -     +1 437 215 2483 
-# mylandmarktech@gaIL.com,  -    www.mylandmarktech.com 
+# mylandmarktech@gmail.com,  -    www.mylandmarktech.com 
 
 # Setting up Kubernetes (K8s) Cluster on AWS Using KOPS
 
-1.kops is a software use to create production ready k8s cluster in a cloud provider like AWS.
+1.kops is a software used to create production ready k8s cluster in a cloud provider like AWS.
 
 2. kOPS SUPPORTS MULTIPLE CLOUD PROVIDERS
 
@@ -48,7 +48,7 @@
  sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
  sudo chmod +x ./kubectl
  sudo mv ./kubectl /usr/local/bin/kubectl
- aws s3 mb s3://nubonglegah.k8.local
+ aws s3 mb s3://fammymba.k8.local
  aws s3 ls
 
 # 5) Create an IAM role from AWS Console or CLI with below Policies.
@@ -66,10 +66,10 @@ You Created. --> Save.
 
 # 6) create an S3 bucket Execute below commond in KOPS Server use unique bucket name if you get bucket name exists error.
 
-	aws s3 mb s3://class21.k8s.local
+	aws s3 mb s3://class27.k8s.local
 	aws s3 ls
 	
-    ex: s3://nubong.k8s.local
+    ex: s3://fammymba.k8s.local
      
 	Expose environment variable:
 
@@ -77,8 +77,8 @@ You Created. --> Save.
     vi .bashrc
 	
 	# Give Unique Name And S3 Bucket which you created.
-	export NAME=class21.k8s.local
-	export KOPS_STATE_STORE=s3://class21.k8s.local
+	export NAME=class27.k8s.local
+	export KOPS_STATE_STORE=s3://class27.k8s.local
  
     source .bashrc
 	

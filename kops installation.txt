@@ -1,10 +1,10 @@
 <<kops
 Landmark Technologies 
 Tel: +1 437 215 2483 
-mylandmarktech@gailcom 
+mylandmarktech@gmailcom 
 www.mylandmarktech.com 
 kops
-Setup Kubernetes (K8s) Cluster on AWS Using KOPS
+#Setup Kubernetes (K8s) Cluster on AWS Using KOPS
 
 #!/bin/bash
 #1) Create Ubuntu EC2 instance
@@ -16,7 +16,9 @@ Setup Kubernetes (K8s) Cluster on AWS Using KOPS
  sudo curl https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip
  sudo apt install unzip python -y
  sudo unzip awscli-bundle.zip
- sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+ sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+ sudo unzip awscliv2.zip
+ sudo ./aws/install
  
  
 #3) Install kops on ubuntu instance:
@@ -32,7 +34,7 @@ Setup Kubernetes (K8s) Cluster on AWS Using KOPS
  sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
  sudo chmod +x ./kubectl
  sudo mv ./kubectl /usr/local/bin/kubectl
- aws s3 mb s3://nubonglegah.k8.local
+ aws s3 mb s3://fammymba.k8.local
  aws s3 ls
 
 5) Create an IAM role from Consloe or CLI with below Policies.
@@ -50,7 +52,7 @@ You Created. --> Save.
 
 6) create an S3 bucket Execute below commond in KOPS Server use unique bucket name if you get bucket name exists error.
 
-	aws s3 mb s3://nubonglegah.k8.local
+	aws s3 mb s3://fammymba.k8.local
 	aws s3 ls
 	
     ex:
@@ -63,8 +65,8 @@ You Created. --> Save.
     vi .bashrc
 	
 	# Give Unique Name And S3 Bucket which you created.
-	export NAME=s3://legah2045.k8.local
-	export KOPS_STATE_STORE=s3://legah2045.k8.local
+	export NAME=fammymba.k8.local
+	export KOPS_STATE_STORE=s3://fammymba.k8.local
  
     source .bashrc
 	
@@ -76,6 +78,8 @@ You Created. --> Save.
 8)Create kubernetes cluster definitions on S3 bucket
 
 	kops create cluster --zones us-east-2c --networking weave --master-size t2.medium --master-count 1 --node-size t2.large --node-count=2 ${NAME}
+	
+	kops create cluster --zones us-east-1c --networking weave --master-size t2.medium --master-count 1 --node-size t2.micro --node-count=2 ${NAME}
 	
 	kops create cluster --zones us-east-1e,zones us-east-2c --networking weave --master-size t2.medium --master-count 2 --node-size t2.micro --node-count=2 ${NAME}
 
